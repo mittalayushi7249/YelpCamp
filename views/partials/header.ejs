@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yelpcamp</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+  .card {
+    width: 30%;
+    float: left;
+    margin: 1.66%;
+  }
+  img{
+    width: 300px;
+    height: 300px;
+  }
+
+  </style>
+</head>
+<body>
+  <nav id="navbar-example2" class="navbar navbar-light bg-light">
+    <a class="navbar-brand" href="/">YelpCamp</a>
+    <ul class="nav">
+      <%if(currentUser == undefined){%>
+        <li class="nav-item">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/register">Sign up</a>
+        </li>
+      <%}else{%>
+        <li class="nav-item">
+         <a class="nav-link"> Signed In As <%= currentUser.username%></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">log out</a>
+        </li>
+      <%}%>
+
+
+    </ul>
+  </nav>
+
+  <div class="container">
+    <%if(success && success.length >0){%>
+      <div class="alert alert-success" role="alert">
+        <%= success%>
+      </div>
+    <%}%>
+    
+    <%if(error && error.length >0){%>
+      <div class="alert alert-danger" role="alert">
+        <%= error%>
+      </div>
+    <%}%>
+
+  </div>

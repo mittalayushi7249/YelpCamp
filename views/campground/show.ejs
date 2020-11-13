@@ -1,0 +1,55 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+    <div class="row">
+        <div class="col col-md-3">
+            <p class="lead">YelpCamp</p>
+            <ul class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 1</li>
+                <li class="list-group-item">Info 1</li>
+              </ul>
+        </div>
+        <div class="col col-md-9">
+            <div style="width: 100%;" class="card">
+                <img  style="width: 100%;height: 500px;" class="card-img-top" src="<%=campground.image%>" alt="Card image cap">
+                <div class="card-body">
+                    
+                    <h4><a href=""><%=campground.name%></a></h4>
+                    <p><%=campground.description%></p>
+                    <p class="text-right"><em>Submitted By - <%=campground.author.username%></em> </p>
+                    <% if(currentUser && campground.author.id.equals(currentUser._id)){%>
+                        <div class="container row">
+                            <p><a class="btn btn-warning" href="/campground/<%= campground._id%>/edit">EDIT</a></p>
+                            <form action="/campground/<%= campground._id%>/?_method=DELETE" method="POST">
+                                <button style="margin-left: 5px;" class="btn btn-danger">DELETE</button>
+                            </form>
+                        </div>
+                    <%}%>
+
+                    
+
+                </div>
+            </div>
+            <div style="width: 100%;" class="card">
+                <div class="card-body">
+                    <p class="text-right"><a class="btn btn-success" href="/campground/<%= campground._id%>/comments/new">Add New Comment</a></p>
+                    <% campground.comments.forEach(function(comment){%>
+                    <div class="row">
+                        <div class="col-10">
+                            <p>
+                                <strong><%=comment.author%></strong> <br>
+                                <%=comment.text%>
+                            </p>
+                        </div>
+                        <div class="col">
+                            <p class="text-right"></p>
+                        </div>
+                    </div>    
+                    <%});%>
+                </div>            
+            </div>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>
